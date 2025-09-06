@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import { useState } from "react";
 import { View, TextInput, Button, Alert } from "react-native";
-import { signInWithEmailAndPassword, singInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword,} from 'firebase/auth'
 import { auth } from "../services/FireBase";
+import { styles } from "../styles/StylesLogin";
 
-export default function LoginScreen({ navigation }){
+export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -15,12 +16,23 @@ export default function LoginScreen({ navigation }){
         }
     }
 
-    return(
-        <View>
-            <TextInput placeholder="Email" value={email} on onChangeText={setEmail}/>
-            <TextInput placeholder="Constraseña" value={password} onChangeText={setPassword}/>
-            <Button title="Iniciar Sesión" onPress={handleLogin}/>
-            <Button title="Registrarse" onPress={() => navigation.navigate("Register")}/>
+    return (
+        <View style={styles.container}>
+            <TextInput 
+                placeholder="Email"
+                value={email}
+                onChangeText={setEmail}
+                style={styles.input}
+            />
+            <TextInput 
+                placeholder="Contraseña"
+                value={password}
+                onChangeText={setPassword}
+                style={styles.input}
+                secureTextEntry
+            />
+            <Button title="Iniciar Sesión" onPress={handleLogin} />
+            <Button title="Registrarse" onPress={() => navigation.navigate("Register")} />
         </View>
     )
 }
